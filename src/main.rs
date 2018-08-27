@@ -1,5 +1,7 @@
-#[macro_use] extern crate lazy_static;
-#[macro_use] extern crate log;
+#[macro_use]
+extern crate lazy_static;
+#[macro_use]
+extern crate log;
 
 extern crate ansi_term;
 extern crate brev;
@@ -33,6 +35,7 @@ mod cooked_string;
 mod expression;
 mod fragment;
 mod function;
+mod interrupt_handler;
 mod justfile;
 mod lexer;
 mod load_dotenv;
@@ -47,7 +50,6 @@ mod run;
 mod runtime_error;
 mod shebang;
 mod token;
-mod interrupt_handler;
 
 use common::*;
 
