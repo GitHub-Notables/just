@@ -482,21 +482,21 @@ mod test {
   }
 
   summary_test! {
-      tokenize_recipe_interpolation_eol,
+        tokenize_recipe_interpolation_eol,
     "foo: # some comment
  {{hello}}
 ",
-      "N:#$>^{N}$<.",
-    }
+        "N:#$>^{N}$<.",
+      }
 
   summary_test! {
-      tokenize_recipe_interpolation_eof,
+        tokenize_recipe_interpolation_eof,
     "foo: # more comments
  {{hello}}
 # another comment
 ",
-      "N:#$>^{N}$<#$.",
-    }
+        "N:#$>^{N}$<#$.",
+      }
 
   summary_test! {
     tokenize_recipe_complex_interpolation_expression,
@@ -511,16 +511,16 @@ mod test {
   }
 
   summary_test! {
-      tokenize_junk,
+        tokenize_junk,
     "bob
 
 hello blah blah blah : a b c #whatever
     ",
-      "N$$NNNN:NNN#$.",
-    }
+        "N$$NNNN:NNN#$.",
+      }
 
   summary_test! {
-      tokenize_empty_lines,
+        tokenize_empty_lines,
     "
 # this does something
 hello:
@@ -533,19 +533,19 @@ hello:
 
 # yolo
   ",
-      "$#$N:$>^_$^_$$^_$$^_$$<#$.",
-    }
+        "$#$N:$>^_$^_$$^_$$^_$$<#$.",
+      }
 
   summary_test! {
-      tokenize_comment_before_variable,
+        tokenize_comment_before_variable,
     "
 #
 A='1'
 echo:
   echo {{A}}
   ",
-      "$#$N='$N:$>^_{N}$<.",
-    }
+        "$#$N='$N:$>^_{N}$<.",
+      }
 
   summary_test! {
     tokenize_interpolation_backticks,
@@ -560,7 +560,7 @@ echo:
   }
 
   summary_test! {
-      tokenize_multiple,
+        tokenize_multiple,
     "
 hello:
   a
@@ -575,8 +575,8 @@ bob:
   frank
   ",
 
-      "$N:$>^_$^_$$^_$$^_$$<#$N:$>^_$<.",
-    }
+        "$N:$>^_$^_$$^_$$^_$$<#$N:$>^_$<.",
+      }
 
   summary_test! {
     tokenize_comment,
@@ -591,7 +591,7 @@ bob:
   }
 
   summary_test! {
-      tokenize_order,
+        tokenize_order,
     r"
 b: a
   @mv a b
@@ -605,8 +605,8 @@ d: c
 
 c: b
   @mv b c",
-      "$N:N$>^_$$<N:$>^_$^_$$<N:N$>^_$$<N:N$>^_<.",
-    }
+        "$N:N$>^_$$<N:$>^_$^_$$<N:N$>^_$$<N:N$>^_<.",
+      }
 
   summary_test! {
     tokenize_parens,
@@ -621,32 +621,32 @@ c: b
   }
 
   error_test! {
-      name:  tokenize_space_then_tab,
+        name:  tokenize_space_then_tab,
     input: "a:
  0
  1
 \t2
 ",
-      index:  9,
-      line:   3,
-      column: 0,
-      width:  None,
-      kind:   InconsistentLeadingWhitespace{expected: " ", found: "\t"},
-    }
+        index:  9,
+        line:   3,
+        column: 0,
+        width:  None,
+        kind:   InconsistentLeadingWhitespace{expected: " ", found: "\t"},
+      }
 
   error_test! {
-      name:  tokenize_tabs_then_tab_space,
+        name:  tokenize_tabs_then_tab_space,
     input: "a:
 \t\t0
 \t\t 1
 \t  2
 ",
-      index:  12,
-      line:   3,
-      column: 0,
-      width:  None,
-      kind:   InconsistentLeadingWhitespace{expected: "\t\t", found: "\t  "},
-    }
+        index:  12,
+        line:   3,
+        column: 0,
+        width:  None,
+        kind:   InconsistentLeadingWhitespace{expected: "\t\t", found: "\t  "},
+      }
 
   error_test! {
     name: tokenize_outer_shebang,
@@ -699,15 +699,15 @@ c: b
   }
 
   error_test! {
-      name:  unterminated_interpolation,
+        name:  unterminated_interpolation,
     input: "foo:\n echo {{
 ",
-      index:  13,
-      line:   1,
-      column: 8,
-      width:  None,
-      kind:   UnterminatedInterpolation,
-    }
+        index:  13,
+        line:   1,
+        column: 8,
+        width:  None,
+        kind:   UnterminatedInterpolation,
+      }
 
   error_test! {
     name:   mixed_leading_whitespace,

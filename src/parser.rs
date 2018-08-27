@@ -463,71 +463,71 @@ mod test {
   }
 
   summary_test! {
-      parse_empty,
+        parse_empty,
     "
 
 # hello
 
 
     ",
-      "",
-    }
+        "",
+      }
 
   summary_test! {
-      parse_string_default,
+        parse_string_default,
     r#"
 
 foo a="b\t":
 
 
   "#,
-      r#"foo a='b\t':"#,
-    }
+        r#"foo a='b\t':"#,
+      }
 
   summary_test! {
-      parse_variadic,
+        parse_variadic,
     r#"
 
 foo +a:
 
 
   "#,
-      r#"foo +a:"#,
-    }
+        r#"foo +a:"#,
+      }
 
   summary_test! {
-      parse_variadic_string_default,
+        parse_variadic_string_default,
     r#"
 
 foo +a="Hello":
 
 
   "#,
-      r#"foo +a='Hello':"#,
-    }
+        r#"foo +a='Hello':"#,
+      }
 
   summary_test! {
-      parse_raw_string_default,
+        parse_raw_string_default,
     r#"
 
 foo a='b\t':
 
 
   "#,
-      r#"foo a='b\\t':"#,
-    }
+        r#"foo a='b\\t':"#,
+      }
 
   summary_test! {
-      parse_export,
+        parse_export,
     r#"
 export a = "hello"
 
   "#,
-      r#"export a = "hello""#,
-    }
+        r#"export a = "hello""#,
+      }
 
   summary_test! {
-      parse_complex,
+        parse_complex,
     "
 x:
 y:
@@ -562,10 +562,10 @@ x:
 y:
 
 z:"
-    }
+      }
 
   summary_test! {
-      parse_shebang,
+        parse_shebang,
     "
 practicum = 'hello'
 install:
@@ -581,7 +581,7 @@ install:
     if [[ -f {{practicum}} ]]; then
     \treturn
     fi",
-    }
+      }
 
   summary_test! {
     parse_simple_shebang,
@@ -590,7 +590,7 @@ install:
   }
 
   summary_test! {
-      parse_assignments,
+        parse_assignments,
     r#"a = "0"
 c = a + b + a + b
 b = "1"
@@ -600,10 +600,10 @@ b = "1"
 b = "1"
 
 c = a + b + a + b"#,
-    }
+      }
 
   summary_test! {
-      parse_assignment_backticks,
+        parse_assignment_backticks,
     "a = `echo hello`
 c = a + b + a + b
 b = `echo goodbye`",
@@ -612,15 +612,15 @@ b = `echo goodbye`",
 b = `echo goodbye`
 
 c = a + b + a + b",
-    }
+      }
 
   summary_test! {
-     parse_interpolation_backticks,
+      parse_interpolation_backticks,
     r#"a:
  echo {{  `echo hello` + "blarg"   }} {{   `echo bob`   }}"#,
     r#"a:
     echo {{`echo hello` + "blarg"}} {{`echo bob`}}"#,
-   }
+    }
 
   summary_test! {
     eof_test,
@@ -649,7 +649,7 @@ c = a + b + a + b",
   }
 
   summary_test! {
-      unary_functions,
+        unary_functions,
     "
 x = arch()
 
@@ -659,10 +659,10 @@ a:
 
 a:
     {{os()}} {{os_family()}}",
-    }
+      }
 
   summary_test! {
-      env_functions,
+        env_functions,
     r#"
 x = env_var('foo',)
 
@@ -672,7 +672,7 @@ a:
 
 a:
     {{env_var_or_default("foo" + "bar", "baz")}} {{env_var(env_var("baz"))}}"#,
-    }
+      }
 
   compilation_error_test! {
     name:   missing_colon,
